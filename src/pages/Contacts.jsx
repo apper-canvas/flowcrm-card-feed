@@ -27,14 +27,14 @@ function Contacts() {
     loadContacts();
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
     // Filter contacts based on search term
-const filtered = contacts.filter(contact =>
+    const filtered = contacts?.filter(contact =>
       contact.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      contact.Tags?.split(',').some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+      (contact.Tags && contact.Tags.split(',').some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
+    ) || [];
     setFilteredContacts(filtered);
   }, [contacts, searchTerm]);
 
@@ -252,10 +252,10 @@ const handleSave = async () => {
 <td className="px-6 py-4 whitespace-nowrap">
                         <div>
                           <div className="text-sm font-medium text-gray-900">
-                            {contact.Name || contact.name}
+                            {contact.Name || contact.name || 'No Name'}
                           </div>
                           <div className="text-sm text-gray-500">
-                            {contact.email}
+                            {contact.email || 'No Email'}
                           </div>
                           {contact.phone && (
                             <div className="text-sm text-gray-500">
@@ -269,16 +269,16 @@ const handleSave = async () => {
                           {contact.company || '-'}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+<td className="px-6 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {(contact.Tags ? contact.Tags.split(',').filter(tag => tag.trim()) : contact.tags || []).map((tag) => (
+                          {(contact.Tags ? contact.Tags.split(',').filter(tag => tag?.trim()) : contact.tags || [])?.map((tag) => (
                             <span
                               key={typeof tag === 'string' ? tag.trim() : tag}
                               className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                             >
                               {typeof tag === 'string' ? tag.trim() : tag}
                             </span>
-                          ))}
+                          )) || null}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -299,10 +299,10 @@ const handleSave = async () => {
                           >
                             <ApperIcon name="Edit" className="w-4 h-4" />
                           </motion.button>
-                          <motion.button
+<motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDelete(contact.id)}
+                            onClick={() => handleDelete(contact.Id || contact.id)}
                             className="text-gray-400 hover:text-red-600 transition-colors"
                           >
                             <ApperIcon name="Trash2" className="w-4 h-4" />
@@ -353,25 +353,25 @@ const handleSave = async () => {
 
                 <div className="p-6">
                   {modalMode === 'view' ? (
-                    <div className="space-y-4">
+<div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Name
                         </label>
-                        <p className="text-gray-900">{selectedContact?.name}</p>
+                        <p className="text-gray-900">{selectedContact?.Name || selectedContact?.name || 'No Name'}</p>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Email
                         </label>
-                        <p className="text-gray-900">{selectedContact?.email}</p>
+                        <p className="text-gray-900">{selectedContact?.email || 'No Email'}</p>
                       </div>
-                      {selectedContact?.phone && (
+{selectedContact?.phone && (
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Phone
                           </label>
-                          <p className="text-gray-900">{selectedContact.phone}</p>
+                          <p className="text-gray-900">{selectedContact?.phone}</p>
                         </div>
                       )}
                       {selectedContact?.company && (
@@ -379,21 +379,21 @@ const handleSave = async () => {
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Company
                           </label>
-                          <p className="text-gray-900">{selectedContact.company}</p>
+                          <p className="text-gray-900">{selectedContact?.company}</p>
                         </div>
                       )}
-                      {selectedContact?.tags?.length > 0 && (
+{(selectedContact?.tags?.length > 0 || (selectedContact?.Tags && selectedContact.Tags.length > 0)) && (
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Tags
                           </label>
                           <div className="flex flex-wrap gap-2">
-                            {selectedContact.tags.map((tag) => (
+                            {(selectedContact?.Tags ? selectedContact.Tags.split(',').filter(tag => tag?.trim()) : selectedContact?.tags || [])?.map((tag) => (
                               <span
-                                key={tag}
+                                key={typeof tag === 'string' ? tag.trim() : tag}
                                 className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary"
                               >
-                                {tag}
+                                {typeof tag === 'string' ? tag.trim() : tag}
                               </span>
                             ))}
                           </div>
@@ -460,8 +460,8 @@ const handleSave = async () => {
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Tags
                         </label>
-                        <div className="flex flex-wrap gap-2 mb-2">
-                          {formData.tags.map((tag) => (
+<div className="flex flex-wrap gap-2 mb-2">
+                          {(formData.tags || []).map((tag) => (
                             <span
                               key={tag}
                               className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary"
