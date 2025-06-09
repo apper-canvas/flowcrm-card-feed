@@ -104,7 +104,7 @@ class ActivityService {
       }
 
       if (response.results) {
-        const successfulRecords = response.results.filter(result => result.success);
+const successfulRecords = response.results.filter(result => result.success);
         const failedRecords = response.results.filter(result => !result.success);
         
         if (failedRecords.length > 0) {
@@ -169,7 +169,7 @@ class ActivityService {
       }
 
       if (response.results) {
-        const successfulUpdates = response.results.filter(result => result.success);
+const successfulUpdates = response.results.filter(result => result.success);
         const failedUpdates = response.results.filter(result => !result.success);
         
         if (failedUpdates.length > 0) {
@@ -211,7 +211,7 @@ class ActivityService {
       }
 
       if (response.results) {
-        const successfulDeletions = response.results.filter(result => result.success);
+const successfulDeletions = response.results.filter(result => result.success);
         const failedDeletions = response.results.filter(result => !result.success);
         
         if (failedDeletions.length > 0) {
