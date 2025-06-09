@@ -49,13 +49,12 @@ function Dashboard() {
         const sortedActivities = activities
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 5);
-        
-        // Add contact names to activities
-const activitiesWithContacts = sortedActivities.map(activity => {
+// Add contact names to activities
+        const activitiesWithContacts = sortedActivities.map(activity => {
           const contact = contacts.find(c => c.Id === activity.contact_id);
           return { ...activity, contactName: contact?.Name || 'Unknown Contact' };
         });
-setRecentActivities(activitiesWithContacts);
+        setRecentActivities(activitiesWithContacts);
 
         // Pipeline summary
         const pipelineStages = ['lead', 'qualified', 'proposal', 'negotiation'];
@@ -69,7 +68,6 @@ setRecentActivities(activitiesWithContacts);
         });
 
         setDealsPipeline(pipeline);
-      } catch (err) {
       } catch (err) {
         setError(err.message || 'Failed to load dashboard data');
       } finally {
