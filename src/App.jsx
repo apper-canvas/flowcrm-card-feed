@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Layout from './components/Layout';
-import Home from './pages/Home';
+import HomePage from '@/components/pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import Contacts from './pages/Contacts';
 import Deals from './pages/Deals';
@@ -19,7 +19,7 @@ function App() {
             <Route path="contacts" element={<Contacts />} />
             <Route path="deals" element={<Deals />} />
             <Route path="activities" element={<Activities />} />
-            <Route path="home" element={<Home />} />
+<Route path="home" element={<HomePage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
