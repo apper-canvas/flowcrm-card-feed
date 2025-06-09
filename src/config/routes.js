@@ -2,8 +2,6 @@ import Dashboard from '../pages/Dashboard';
 import Contacts from '../pages/Contacts';
 import Deals from '../pages/Deals';
 import Activities from '../pages/Activities';
-import Home from '../pages/Home';
-
 export const routes = {
   dashboard: {
     id: 'dashboard',
