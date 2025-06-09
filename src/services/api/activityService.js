@@ -107,9 +107,8 @@ class ActivityService {
 const successfulRecords = response.results.filter(result => result.success);
         const failedRecords = response.results.filter(result => !result.success);
         
-        if (failedRecords.length > 0) {
-          console.error(`Failed to create ${failedRecords.length} records:`, failedRecords);
-          
+if (failedRecords.length > 0) {
+          console.error(`Failed to create ${failedRecords.length} records:${failedRecords}`);
           failedRecords.forEach(record => {
             record.errors?.forEach(error => {
               toast.error(`${error.fieldLabel}: ${error.message}`);
@@ -172,9 +171,8 @@ const successfulRecords = response.results.filter(result => result.success);
 const successfulUpdates = response.results.filter(result => result.success);
 const failedUpdates = response.results.filter(result => !result.success);
         
-        if (failedUpdates.length > 0) {
-          console.error(`Failed to update ${failedUpdates.length} records:, ${failedUpdates}`);
-          
+if (failedUpdates.length > 0) {
+          console.error(`Failed to update ${failedUpdates.length} records:${failedUpdates}`);
           failedUpdates.forEach(record => {
             record.errors?.forEach(error => {
               toast.error(`${error.fieldLabel}: ${error.message}`);
@@ -214,9 +212,8 @@ const failedUpdates = response.results.filter(result => !result.success);
 const successfulDeletions = response.results.filter(result => result.success);
         const failedDeletions = response.results.filter(result => !result.success);
         
-        if (failedDeletions.length > 0) {
-          console.error(`Failed to delete ${failedDeletions.length} records:`, failedDeletions);
-          
+if (failedDeletions.length > 0) {
+          console.error(`Failed to delete ${failedDeletions.length} records:${failedDeletions}`);
           failedDeletions.forEach(record => {
             if (record.message) toast.error(record.message);
           });
