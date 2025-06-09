@@ -144,9 +144,8 @@ setSelectedDeal(deal);
       return;
     }
 
-    try {
+try {
       const updatedDeal = await dealService.update(draggedDeal.id, {
-        ...draggedDeal,
         stage: newStage
       });
       setDeals(deals.map(d => d.id === draggedDeal.id ? updatedDeal : d));
@@ -414,10 +413,10 @@ const getContactName = (contactId) => {
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
                       required
                     >
-                      <option value="">Select a contact</option>
+<option value="">Select a contact</option>
                       {contacts.map((contact) => (
-                        <option key={contact.id} value={contact.id}>
-                          {contact.name} - {contact.company || contact.email}
+                        <option key={contact.Id} value={contact.Id}>
+                          {contact.Name} - {contact.company || contact.email}
                         </option>
                       ))}
                     </select>
