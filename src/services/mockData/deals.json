@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "title": "TechCorp Enterprise License",
+    "value": 85000,
+    "stage": "proposal",
+    "contactId": "1",
+    "probability": 75,
+    "expectedCloseDate": "2024-02-15",
+    "createdAt": "2024-01-15T11:00:00Z"
+  },
+  {
+    "id": "2",
+    "title": "GlobalMart POS System",
+    "value": 45000,
+    "stage": "negotiation",
+    "contactId": "2",
+    "probability": 80,
+    "expectedCloseDate": "2024-02-28",
+    "createdAt": "2024-01-12T14:30:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Creative Studio Website Redesign",
+    "value": 15000,
+    "stage": "qualified",
+    "contactId": "3",
+    "probability": 60,
+    "expectedCloseDate": "2024-03-10",
+    "createdAt": "2024-01-18T09:20:00Z"
+  },
+  {
+    "id": "4",
+    "title": "FinancePlus Compliance Software",
+    "value": 120000,
+    "stage": "lead",
+    "contactId": "4",
+    "probability": 40,
+    "expectedCloseDate": "2024-04-01",
+    "createdAt": "2024-01-20T16:15:00Z"
+  },
+  {
+    "id": "5",
+    "title": "HealthTech Data Analytics",
+    "value": 65000,
+    "stage": "proposal",
+    "contactId": "5",
+    "probability": 70,
+    "expectedCloseDate": "2024-03-20",
+    "createdAt": "2024-01-22T13:45:00Z"
+  }
+]

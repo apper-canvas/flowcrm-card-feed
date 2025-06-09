@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "type": "call",
+    "contactId": "1",
+    "dealId": "1",
+    "subject": "Follow-up call on enterprise proposal",
+    "notes": "Discussed pricing structure and implementation timeline. Sarah confirmed budget approval is pending board review next week. Positive response to our technical capabilities demo.",
+    "date": "2024-01-25T10:30:00Z",
+    "createdAt": "2024-01-25T10:45:00Z"
+  },
+  {
+    "id": "2",
+    "type": "email",
+    "contactId": "2",
+    "dealId": "2",
+    "subject": "Sent contract revision for POS system",
+    "notes": "Addressed Michael's concerns about integration with existing payment systems. Included revised terms for training and support. Expecting response by end of week.",
+    "date": "2024-01-24T14:20:00Z",
+    "createdAt": "2024-01-24T14:25:00Z"
+  },
+  {
+    "id": "3",
+    "type": "meeting",
+    "contactId": "3",
+    "dealId": "3",
+    "subject": "Project scope meeting with Creative Studio",
+    "notes": "Met with Emily and her team to define website requirements. Discussed design preferences, timeline, and content migration needs. Very engaged and excited about the project.",
+    "date": "2024-01-23T15:00:00Z",
+    "createdAt": "2024-01-23T16:30:00Z"
+  },
+  {
+    "id": "4",
+    "type": "call",
+    "contactId": "4",
+    "dealId": "4",
+    "subject": "Initial discovery call with FinancePlus",
+    "notes": "David outlined their compliance challenges and regulatory requirements. Large opportunity but long sales cycle expected. Need to involve technical team for next meeting.",
+    "date": "2024-01-22T11:15:00Z",
+    "createdAt": "2024-01-22T11:45:00Z"
+  },
+  {
+    "id": "5",
+    "type": "email",
+    "contactId": "5",
+    "dealId": "5",
+    "subject": "Proposal submitted to HealthTech",
+    "notes": "Sent comprehensive proposal for data analytics platform. Highlighted ROI projections and security compliance features. Lisa mentioned decision timeline of 4-6 weeks.",
+    "date": "2024-01-21T09:00:00Z",
+    "createdAt": "2024-01-21T09:15:00Z"
+  },
+  {
+    "id": "6",
+    "type": "note",
+    "contactId": "1",
+    "dealId": null,
+    "subject": "Research on TechCorp's competitors",
+    "notes": "Analyzed their current tech stack and identified key pain points. Found that they're evaluating 3 other vendors. Our advantage is better integration capabilities and local support.",
+    "date": "2024-01-20T13:30:00Z",
+    "createdAt": "2024-01-20T13:45:00Z"
+  },
+  {
+    "id": "7",
+    "type": "meeting",
+    "contactId": "2",
+    "dealId": "2",
+    "subject": "Product demo for GlobalMart team",
+    "notes": "Demonstrated POS system features to Michael and his technical team. Great reception, especially for inventory management integration. Asked for references from similar retail clients.",
+    "date": "2024-01-19T14:00:00Z",
+    "createdAt": "2024-01-19T15:30:00Z"
+  }
+]
