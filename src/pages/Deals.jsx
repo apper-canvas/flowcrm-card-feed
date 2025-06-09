@@ -57,14 +57,14 @@ function Deals() {
   const openModal = (mode, deal = null) => {
     setModalMode(mode);
     if (deal) {
-      setSelectedDeal(deal);
+setSelectedDeal(deal);
       setFormData({
         title: deal.title,
         value: deal.value.toString(),
         stage: deal.stage,
-        contactId: deal.contactId,
+        contactId: deal.contact_id,
         probability: deal.probability,
-        expectedCloseDate: deal.expectedCloseDate ? deal.expectedCloseDate.split('T')[0] : ''
+        expectedCloseDate: deal.expected_close_date ? deal.expected_close_date.split('T')[0] : ''
       });
     } else {
       setSelectedDeal(null);

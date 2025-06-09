@@ -57,7 +57,7 @@ function Activities() {
     setLoading(true);
     setError(null);
     try {
-      const [activitiesData, contactsData, dealsData] = await Promise.all([
+const [activitiesData, contactsData, dealsData] = await Promise.all([
         activityService.getAll(),
         contactService.getAll(),
         dealService.getAll()
@@ -83,9 +83,9 @@ function Activities() {
     if (activity) {
       setSelectedActivity(activity);
       setFormData({
-        type: activity.type,
-        contactId: activity.contactId,
-        dealId: activity.dealId || '',
+type: activity.type,
+        contactId: activity.contact_id,
+        dealId: activity.deal_id || '',
         subject: activity.subject,
         notes: activity.notes,
         date: activity.date ? new Date(activity.date).toISOString().slice(0, 16) : ''
@@ -153,9 +153,9 @@ function Activities() {
     }
   };
 
-  const getContactName = (contactId) => {
-    const contact = contacts.find(c => c.id === contactId);
-    return contact?.name || 'Unknown Contact';
+const getContactName = (contactId) => {
+    const contact = contacts.find(c => c.Id === contactId);
+    return contact?.Name || 'Unknown Contact';
   };
 
   const getDealTitle = (dealId) => {
@@ -168,8 +168,8 @@ function Activities() {
     return activityTypes.find(t => t.id === type) || activityTypes[0];
   };
 
-  const getContactDeals = (contactId) => {
-    return deals.filter(deal => deal.contactId === contactId);
+const getContactDeals = (contactId) => {
+    return deals.filter(deal => deal.contact_id === contactId);
   };
 
   if (loading) {

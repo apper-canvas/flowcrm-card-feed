@@ -29,11 +29,11 @@ function Contacts() {
 
   useEffect(() => {
     // Filter contacts based on search term
-    const filtered = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      contact.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+const filtered = contacts.filter(contact =>
+      contact.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.Tags?.split(',').some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     setFilteredContacts(filtered);
   }, [contacts, searchTerm]);

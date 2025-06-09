@@ -57,8 +57,8 @@ function HomePage() {
           recentActivities: recentActivities.length
         });
 
-        const sortedContacts = contacts
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+const sortedContacts = contacts
+          .sort((a, b) => new Date(b.CreatedOn || b.created_at) - new Date(a.CreatedOn || a.created_at))
           .slice(0, 3);
         setRecentContacts(sortedContacts);
       } catch (error) {
