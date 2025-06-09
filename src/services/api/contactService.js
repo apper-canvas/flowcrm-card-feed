@@ -75,15 +75,18 @@ async create(contactData) {
           filteredData[field] = contactData[field];
         }
       });
-
-      // Map form field 'name' to database field 'Name' if present
-      if (contactData.name !== undefined) {
+// Map form field 'name' to database field 'Name' if present
+      if (contactData.name !== undefined && !filteredData.Name) {
         filteredData.Name = contactData.name;
       }
 
-      // Handle Tags field - convert array to comma-separated string
-      if (filteredData.Tags && Array.isArray(filteredData.Tags)) {
-        filteredData.Tags = filteredData.Tags.join(',');
+      // Handle Tags field - convert array to comma-separated string if needed
+      if (filteredData.Tags) {
+        if (Array.isArray(filteredData.Tags)) {
+          filteredData.Tags = filteredData.Tags.join(',');
+        }
+      } else if (contactData.tags && Array.isArray(contactData.tags)) {
+        filteredData.Tags = contactData.tags.join(',');
       }
 
       const params = {
@@ -135,15 +138,18 @@ async update(id, contactData) {
           filteredData[field] = contactData[field];
         }
       });
-
-      // Map form field 'name' to database field 'Name' if present
-      if (contactData.name !== undefined) {
+// Map form field 'name' to database field 'Name' if present
+      if (contactData.name !== undefined && !filteredData.Name) {
         filteredData.Name = contactData.name;
       }
 
-      // Handle Tags field - convert array to comma-separated string
-      if (filteredData.Tags && Array.isArray(filteredData.Tags)) {
-        filteredData.Tags = filteredData.Tags.join(',');
+      // Handle Tags field - convert array to comma-separated string if needed
+      if (filteredData.Tags) {
+        if (Array.isArray(filteredData.Tags)) {
+          filteredData.Tags = filteredData.Tags.join(',');
+        }
+      } else if (contactData.tags && Array.isArray(contactData.tags)) {
+        filteredData.Tags = contactData.tags.join(',');
       }
 
       const params = {

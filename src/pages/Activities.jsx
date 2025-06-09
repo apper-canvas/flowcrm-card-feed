@@ -154,14 +154,24 @@ type: activity.type,
   };
 
 const getContactName = (contactId) => {
-    const contact = contacts.find(c => c.Id === contactId);
-    return contact?.Name || 'Unknown Contact';
+    if (!contactId) return 'Unknown Contact';
+    
+    // Handle both string and integer contact IDs for compatibility
+    const contact = contacts.find(c => {
+      return c.Id === contactId || 
+             c.Id === parseInt(contactId) || 
+             c.id === contactId || 
+             c.id === parseInt(contactId);
+    });
+    
+    // Use proper field names with fallbacks
+    return contact?.Name || contact?.name || 'Unknown Contact';
   };
 
   const getDealTitle = (dealId) => {
     if (!dealId) return null;
-    const deal = deals.find(d => d.id === dealId);
-    return deal?.title || 'Unknown Deal';
+    const deal = deals.find(d => d.Id === dealId || d.id === dealId);
+    return deal?.title || deal?.Name || 'Unknown Deal';
   };
 
   const getActivityTypeInfo = (type) => {
@@ -169,7 +179,15 @@ const getContactName = (contactId) => {
   };
 
 const getContactDeals = (contactId) => {
-    return deals.filter(deal => deal.contact_id === contactId);
+    if (!contactId) return [];
+    
+    // Handle both string and integer contact IDs and field name variations
+    return deals.filter(deal => {
+      return deal.contact_id === contactId || 
+             deal.contact_id === parseInt(contactId) ||
+             deal.contactId === contactId ||
+             deal.contactId === parseInt(contactId);
+    });
   };
 
   if (loading) {

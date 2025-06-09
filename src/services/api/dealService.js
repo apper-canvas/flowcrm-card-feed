@@ -75,23 +75,30 @@ class DealService {
           filteredData[field] = dealData[field];
         }
       });
-
-      // Ensure contact_id is an integer
+// Ensure contact_id is an integer and handle contactId field mapping
       if (filteredData.contact_id) {
         filteredData.contact_id = parseInt(filteredData.contact_id);
+      } else if (dealData.contactId) {
+        filteredData.contact_id = parseInt(dealData.contactId);
       }
 
       // Ensure value is a float
-      if (filteredData.value) {
-        filteredData.value = parseFloat(filteredData.value);
+      if (filteredData.value !== undefined && filteredData.value !== '') {
+        const parsedValue = parseFloat(filteredData.value);
+        if (!isNaN(parsedValue)) {
+          filteredData.value = parsedValue;
+        }
       }
 
       // Ensure probability is a number
-      if (filteredData.probability) {
-        filteredData.probability = parseInt(filteredData.probability);
+      if (filteredData.probability !== undefined) {
+        const parsedProbability = parseInt(filteredData.probability);
+        if (!isNaN(parsedProbability)) {
+          filteredData.probability = parsedProbability;
+        }
       }
 
-      // Handle date format
+      // Handle date format - ensure proper date format
       if (filteredData.expected_close_date) {
         filteredData.expected_close_date = filteredData.expected_close_date;
       }
@@ -145,20 +152,27 @@ class DealService {
           filteredData[field] = dealData[field];
         }
       });
-
-      // Ensure contact_id is an integer
-      if (filteredData.contact_id) {
+// Ensure contact_id is an integer and handle contactId field mapping
+      if (filteredData.contact_id !== undefined) {
         filteredData.contact_id = parseInt(filteredData.contact_id);
+      } else if (dealData.contactId !== undefined) {
+        filteredData.contact_id = parseInt(dealData.contactId);
       }
 
       // Ensure value is a float
-      if (filteredData.value) {
-        filteredData.value = parseFloat(filteredData.value);
+      if (filteredData.value !== undefined && filteredData.value !== '') {
+        const parsedValue = parseFloat(filteredData.value);
+        if (!isNaN(parsedValue)) {
+          filteredData.value = parsedValue;
+        }
       }
 
       // Ensure probability is a number
-      if (filteredData.probability) {
-        filteredData.probability = parseInt(filteredData.probability);
+      if (filteredData.probability !== undefined) {
+        const parsedProbability = parseInt(filteredData.probability);
+        if (!isNaN(parsedProbability)) {
+          filteredData.probability = parsedProbability;
+        }
       }
 
       const params = {

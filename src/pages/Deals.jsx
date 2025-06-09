@@ -167,9 +167,19 @@ setSelectedDeal(deal);
     }).format(value);
   };
 
-  const getContactName = (contactId) => {
-    const contact = contacts.find(c => c.id === contactId);
-    return contact?.name || 'Unknown Contact';
+const getContactName = (contactId) => {
+    if (!contactId) return 'Unknown Contact';
+    
+    // Handle both string and integer contact IDs for compatibility
+    const contact = contacts.find(c => {
+      return c.Id === contactId || 
+             c.Id === parseInt(contactId) || 
+             c.id === contactId || 
+             c.id === parseInt(contactId);
+    });
+    
+    // Use proper database field names with fallbacks
+    return contact?.Name || contact?.name || 'Unknown Contact';
   };
 
   const getDealsByStage = (stageId) => {
@@ -311,8 +321,8 @@ setSelectedDeal(deal);
                             </span>
                           </div>
                           
-                          <div className="text-sm text-gray-600 break-words">
-                            {getContactName(deal.contactId)}
+<div className="text-sm text-gray-600 break-words">
+                            {getContactName(deal.contact_id)}
                           </div>
                           
                           {deal.expectedCloseDate && (
