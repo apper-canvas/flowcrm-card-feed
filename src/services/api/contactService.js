@@ -166,10 +166,10 @@ async update(id, contactData) {
 
       if (response.results) {
 const successfulUpdates = response.results.filter(result => result.success);
-        const failedUpdates = response.results.filter(result => !result.success);
+const failedUpdates = response.results.filter(result => !result.success);
         
         if (failedUpdates.length > 0) {
-          console.error(`Failed to update ${failedUpdates.length} records:`, failedUpdates);
+          console.error(`Failed to update ${failedUpdates.length} records:, ${failedUpdates}`);
           
           failedUpdates.forEach(record => {
             record.errors?.forEach(error => {

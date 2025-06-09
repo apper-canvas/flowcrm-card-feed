@@ -186,8 +186,8 @@ const successfulRecords = response.results.filter(result => result.success);
         throw new Error(response.message);
       }
 
-      if (response.results) {
-const successfulUpdates = response.results.filter(result => result.success);
+if (response.results) {
+        const successfulUpdates = response.results.filter(result => result.success);
         const failedUpdates = response.results.filter(result => !result.success);
         if (failedUpdates.length > 0) {
           console.error(`Failed to update ${failedUpdates.length} records:`, failedUpdates);
