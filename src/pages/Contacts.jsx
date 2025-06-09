@@ -76,20 +76,25 @@ const filtered = contacts.filter(contact =>
     setModalMode('view');
   };
 
-  const handleSave = async () => {
+const handleSave = async () => {
+    setLoading(true);
     try {
       if (modalMode === 'create') {
-        const newContact = await contactService.create(formData);
-        setContacts([...contacts, newContact]);
+        await contactService.create(formData);
+        // Refresh the entire list to ensure data consistency
+        await loadContacts();
         toast.success('Contact created successfully');
       } else if (modalMode === 'edit') {
-        const updatedContact = await contactService.update(selectedContact.id, formData);
-        setContacts(contacts.map(c => c.id === selectedContact.id ? updatedContact : c));
+        await contactService.update(selectedContact.Id, formData);
+        // Refresh the entire list to ensure data consistency
+        await loadContacts();
         toast.success('Contact updated successfully');
       }
       closeModal();
     } catch (err) {
       toast.error('Failed to save contact');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -244,10 +249,10 @@ const filtered = contacts.filter(contact =>
                       transition={{ delay: index * 0.05 }}
                       className="hover:bg-surface transition-colors"
                     >
-                      <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                         <div>
                           <div className="text-sm font-medium text-gray-900">
-                            {contact.name}
+                            {contact.Name || contact.name}
                           </div>
                           <div className="text-sm text-gray-500">
                             {contact.email}
@@ -266,12 +271,12 @@ const filtered = contacts.filter(contact =>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {contact.tags?.map((tag) => (
+                          {(contact.Tags ? contact.Tags.split(',').filter(tag => tag.trim()) : contact.tags || []).map((tag) => (
                             <span
-                              key={tag}
+                              key={typeof tag === 'string' ? tag.trim() : tag}
                               className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
                             >
-                              {tag}
+                              {typeof tag === 'string' ? tag.trim() : tag}
                             </span>
                           ))}
                         </div>
