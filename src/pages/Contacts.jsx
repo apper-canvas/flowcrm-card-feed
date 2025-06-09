@@ -15,8 +15,8 @@ function Contacts() {
   const [selectedContact, setSelectedContact] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState('view'); // view, edit, create
-  const [formData, setFormData] = useState({
-    name: '',
+const [formData, setFormData] = useState({
+    Name: '',
     email: '',
     phone: '',
     company: '',
@@ -55,12 +55,16 @@ useEffect(() => {
   const openModal = (mode, contact = null) => {
     setModalMode(mode);
     if (contact) {
-      setSelectedContact(contact);
-      setFormData({ ...contact });
+setSelectedContact(contact);
+      setFormData({ 
+        ...contact,
+        Name: contact.Name || contact.name || '',
+        tags: contact.Tags ? contact.Tags.split(',').filter(tag => tag?.trim()) : contact.tags || []
+      });
     } else {
       setSelectedContact(null);
       setFormData({
-        name: '',
+        Name: '',
         email: '',
         phone: '',
         company: '',
@@ -406,10 +410,10 @@ const handleSave = async () => {
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Name *
                         </label>
-                        <input
+<input
                           type="text"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          value={formData.Name}
+                          onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
                           placeholder="Enter full name"
                           required
@@ -517,7 +521,7 @@ const handleSave = async () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleSave}
-                      disabled={!formData.name || !formData.email}
+disabled={!formData.Name || !formData.email}
                       className="gradient-button text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {modalMode === 'create' ? 'Create Contact' : 'Save Changes'}

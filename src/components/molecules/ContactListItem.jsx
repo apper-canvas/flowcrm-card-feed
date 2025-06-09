@@ -14,8 +14,8 @@ const ContactListItem = ({ contact, delay }) => {
                 <ApperIcon name="User" className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 truncate">
-                    {contact.name}
+<p className="font-medium text-gray-900 truncate">
+                    {contact.Name || contact.name}
                 </p>
                 <p className="text-sm text-gray-500 truncate">
                     {contact.email}

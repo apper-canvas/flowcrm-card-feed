@@ -66,7 +66,7 @@ class ContactService {
     }
   }
 
-  async create(contactData) {
+async create(contactData) {
     try {
       // Only include updateable fields
       const filteredData = {};
@@ -75,6 +75,11 @@ class ContactService {
           filteredData[field] = contactData[field];
         }
       });
+
+      // Map form field 'name' to database field 'Name' if present
+      if (contactData.name !== undefined) {
+        filteredData.Name = contactData.name;
+      }
 
       // Handle Tags field - convert array to comma-separated string
       if (filteredData.Tags && Array.isArray(filteredData.Tags)) {
@@ -121,7 +126,7 @@ class ContactService {
     }
   }
 
-  async update(id, contactData) {
+async update(id, contactData) {
     try {
       // Only include updateable fields
       const filteredData = { Id: id };
@@ -130,6 +135,11 @@ class ContactService {
           filteredData[field] = contactData[field];
         }
       });
+
+      // Map form field 'name' to database field 'Name' if present
+      if (contactData.name !== undefined) {
+        filteredData.Name = contactData.name;
+      }
 
       // Handle Tags field - convert array to comma-separated string
       if (filteredData.Tags && Array.isArray(filteredData.Tags)) {
